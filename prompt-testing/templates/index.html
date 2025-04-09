@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <h1>Welcome to the Prompt Tester</h1>
+<p>This is the home page. You can upload your prompt for testing here.</p> -->
+
+<h1>Upload Prompt for Testing</h1>
+
+<div class="container">
+    <h2> Description </h2>
+
+This is a prompt testing page for one-phase or two-phase VPN advertisement detection. <br>
+You can provide two prompts: <br>
+1. Detect ads from all of the transcriptions. <br>
+2. Detect VPN ads from the transcriptions containing ads. <br>
+<br>
+<b>Please use "&lt;the_transcription&gt;" to indicate where to inject the transcript into your prompt.</b><br>
+    <h2> Your Prompts</h2>
+
+    <script>
+        function check() {
+            const input_single = document.getElementById('single_prompt');
+            const checkbox_single = document.getElementById('checkbox_single_prompt');
+            const textarea_ad = document.getElementById('prompt_ad');
+
+            if (input_single.checked) {
+                input_single.checked = false;
+                checkbox_single.style.backgroundColor = "white";
+                textarea_ad.style.backgroundColor = "white";
+                textarea_ad.value="";
+                textarea_ad.disabled = false;
+            } else {
+                input_single.checked = true;
+                checkbox_single.style.backgroundColor = "#FDD9B6";
+                textarea_ad.style.backgroundColor = "#DDD";
+                textarea_ad.value="This prompt will not be used.";
+                textarea_ad.disabled = true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const textarea_ad = document.getElementById('prompt_ad');
+            const warning_ad = document.getElementById('warning_ad');
+            const textarea_vpn = document.getElementById('prompt_vpn');
+            const warning_vpn = document.getElementById('warning_vpn');
+
+            textarea_ad.addEventListener('input', function() {
+                const content_ad = textarea_ad.value;
+                if (content_ad.includes('<the_transcription>')) {
+                    warning_ad.style.display = 'none'; // Hide the warning if the string is present
+                } else {
+                    warning_ad.style.display = 'block'; // Show the warning if the string is missing
+                }
+            });
+            textarea_vpn.addEventListener('input', function() {
+                const content_vpn = textarea_vpn.value;
+                if (content_vpn.includes('<the_transcription>')) {
+                    warning_vpn.style.display = 'none'; // Hide the warning if the string is present
+                } else {
+                    warning_vpn.style.display = 'block'; // Show the warning if the string is missing
+                }
+            });
+        });
+    </script>
+
+    <form action="/upload" method="POST" style="display: flex;">
+        <div class="form-group">
+            <label for="author">What is your name? (Optional):</label>
+            <input id="author" name="author"></input>
+        </div>
+
+        <div class="form-group" style="flex-direction: row; align-items: center;">
+            <input style="display: none;" id="single_prompt" name="single_prompt" type="checkbox"></input>
+            <div id="checkbox_single_prompt" class="checkbox" onclick="check()"> </div>
+            <label for="single_prompt" style="margin-left: 10px;">This is a single prompt.</label>
+        </div>
+
+        <!-- Prompt for Ad Testing -->
+        <div class="form-group">
+            <label for="prompt_ad">Enter your prompt for detecting ads:</label>
+            <textarea id="prompt_ad" name="prompt_ad" rows="10" placeholder='範例: 這是一部 YouTube 影片的逐字稿，請你節錄其中跟 業配 有關的段落。
+不要回答任何多餘的文字，請你直接回傳其中跟業配有關的段落，並加註標點符號後回傳給我。
+若是其中沒有任何跟業配有關的段落，請輸出一行「無。」（不包含引號）。
+以下為逐字稿：
+"""
+<the_transcription>
+"""' required></textarea>
+            <div id="warning_ad" class="warning">Warning: The string "&lt;the_transcription&gt;" is not present!</div>
+        </div>
+
+        <!-- Prompt for VPN Testing -->
+        <div class="form-group">
+            <label for="prompt_vpn">Enter your prompt for detecting VPN ads:</label>
+            <textarea id="prompt_vpn" name="prompt_vpn" rows="10" placeholder='範例: 這是一部 YouTube 影片的逐字稿，請你節錄其中跟 VPN 業配 有關的段落。
+不要回答任何多餘的文字，請你直接回傳其中跟 VPN 業配有關的段落，並加註標點符號後回傳給我。
+若是其中沒有任何跟 VPN 業配有關的段落，請輸出一行「無。」（不包含引號）。
+以下為逐字稿：
+"""
+<the_transcription>
+"""' required></textarea>
+            <div id="warning_vpn" class="warning">Warning: The string "&lt;the_transcription&gt;" is not present!</div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

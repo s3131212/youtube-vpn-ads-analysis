@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Results for Task: {{ task.id }}</h1>
+
+<div class="container">
+
+    <div class="result">
+        <h2>Prompt:</h2>
+        <p>{{ task.prompt }}</p>
+    </div>
+
+    {% if task.scores != "" %}
+        {% if task.single %}
+        <div class="scores">
+            <h2>Scores:</h2>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>VPN Sponsorship Detection Accuracy</td>
+                    <td>{{ task.scores.vpn_ad_accuracy | round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>VPN Sponsorship Detection F1-Score</td>
+                    <td>{{ task.scores.vpn_ad_f1 | round(2) }}</td>
+                </tr>
+            </table>
+
+            <h2>VPN Sponsorship Detection Report:</h2>
+            <pre>{{ task.scores.vpn_ad_report }}</pre>
+        </div>
+        {% else %}
+        <div class="scores">
+            <h2>Scores:</h2>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>VPN Sponsorship Detection Accuracy</td>
+                    <td>{{ task.scores.vpn_ad_accuracy | round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>VPN Sponsorship Detection F1-Score</td>
+                    <td>{{ task.scores.vpn_ad_f1 | round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>General Sponsorship Detection Accuracy</td>
+                    <td>{{ task.scores.explicit_ad_accuracy | round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>General Sponsorship Detection F1-Score</td>
+                    <td>{{ task.scores.explicit_ad_f1 | round(2) }}</td>
+                </tr>
+            </table>
+
+            <h2>VPN Sponsorship Detection Report:</h2>
+            <pre>{{ task.scores.vpn_ad_report }}</pre>
+
+            <h2>General Sponsorship Detection Report:</h2>
+            <pre>{{ task.scores.explicit_ad_report }}</pre>
+        </div>
+        {% endif %}
+    {% else %}
+    <p>No scores available yet. The task is still being processed.</p>
+    {% endif %}
+
+    <button onclick="window.location.href='/history';">Back to History</button>
+</div>
+
+{% endblock %}

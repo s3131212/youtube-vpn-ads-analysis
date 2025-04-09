@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script src="{{ url_for('static', filename='js/update_progress.js') }}"></script>
+    <h1>History of Prompt Tests</h1>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Author</th>
+                    <th>Status</th> <!-- This will be replaced by the progress bar -->
+                    <th>Ad Detection Prompt</th>
+                    <th>VPN Detection Prompt</th>
+                    <th>Scores</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks|reverse %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.author }}</td>
+                    <td>
+                        <div class="progress" id="progress-bar-frame-{{ task.id }}">
+                            <div class="progress-bar" id="progress-bar-{{ task.id }}" style="width: {{ task.result / 150 }}%;"></div>
+                        </div>
+                        <span id="status-number-{{ task.id }}">{{ task.result / 150 }}%</span>
+                    </td>
+                    <td>{{ task.prompt_ad | truncate(50) }} ...</td>
+                    <td>{{ task.prompt_vpn | truncate(50) }} ...</td>
+                    <td>
+                        {% if task.scores == "NA" %}
+                            N/A
+                        {% else %}
+                            {{ '%0.4f'|format(task.scores|float) }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button onclick="window.location.href='/task/{{ task.id }}';">View</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button onclick="window.location.href='/';">Back to Home</button>
+    </div>
+
+{% endblock %}

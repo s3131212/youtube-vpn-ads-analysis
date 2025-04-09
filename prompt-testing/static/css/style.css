@@ -1,0 +1,262 @@
+/* Global Styles */
+*{
+    font-family: "IBM Plex Mono", monospace;
+    color: #678ab0;
+    font-size: 2.5vh;
+    line-height: 1.6;
+}
+
+body {
+    background-color: #C7D9DA;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80vw;
+    margin: 2vw 5vw 0vw 5vw;
+    padding: 1vw 3vw;
+    background-color: #FFEED9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1 {
+    color: #678ab0;
+    display: block;
+    margin-top: -1vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-size: 5vh;
+}
+
+
+h2 {
+    color: #5c7c9e;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 3.5vh;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+/* Buttons */
+button {
+    background-color: #FDD9B6;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* max-width: 150px; */
+    align-self: flex-end;
+}
+
+button:hover {
+    background-color: #EBC4B4;
+    color: white;
+}
+
+/* Preformatted Text */
+pre {
+    background-color: #f7f7f7;
+    padding: 1vh;
+    border-radius: 5px;
+    font-size: 2.5vh;
+}
+
+/* Error Message */
+.error {
+    color: #E94E77;
+    font-weight: bold;
+}
+
+/* Form Styles */
+form {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-size: 2.5vh;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin: 1vh 0px;
+    padding: 1.2vh;
+    border: 2px solid #ddd;
+    border-radius: 1vh;
+    font-size: 2vh;
+    resize: vertical;
+    display: flex;
+}
+
+input:focus {
+    outline: none !important;
+    border-color: #EBC4B4;
+}
+textarea:focus {
+    outline: none !important;
+    border-color: #EBC4B4;
+}
+
+input::placeholder {
+    color: rgb(175, 171, 165);
+}
+
+textarea::placeholder {
+    color: rgb(175, 171, 165);
+}
+
+.checkbox {
+    margin: 1vh 0px;
+    padding: 1.2vh;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    font-size: 2vh;
+    resize: vertical;
+    display: flex;
+    width: 1vh;
+    height: 1vh;
+    background-color: white;
+}
+
+.checkbox:hover{
+    border-color: #EBC4B4;
+}
+
+/* Progress Bar Styling */
+.progress {
+    background-color: #f3f3f3;
+    border-radius: 13px;
+    padding: 3px;
+    position: relative;
+    height: 3vh;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    background-color: #4A90E2;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* Align status number */
+#status-number {
+    font-size: 14px;
+    color: #333;
+    margin-left: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+
+/* Style for the navigation bar */
+header {
+    background-color: #ffffff2e;
+    margin: 1vw;
+    text-align: center;
+    /* height: 9vh; */
+    /* position: fixed; */
+    width: 98vw;
+    border-radius: 1vh;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 5%;
+    display: flex;
+    justify-content: right;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+nav ul li {
+    margin: 7px;
+    display: block;
+    border-radius: 10px;
+    /* width: 5%; */
+
+}
+
+nav ul li a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 3.2vh;
+    font-weight: bold;
+    display: block;
+    color: #EBC4B4;
+}
+
+nav ul li:hover {
+    /* background-color: red; */
+    background-color: #86A6C5;
+}
+
+/* nav ul li a:hover {
+    color: black;
+} */
+
+/* Style for main content */
+main {
+    padding: 20px;
+}
+
+.warning {
+    color: rgb(211, 72, 72);
+    display: none; /* Hidden by default */
+}
+
+.disable {
+    background-color: #FDD9B6;
+}
+
