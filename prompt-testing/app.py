@@ -24,7 +24,7 @@ task_manager.start_worker()
 
 
 # 允許的 IP 範圍
-ALLOWED_IP_PREFIX = "140.112."
+ALLOWED_IP_PREFIX = ""
 
 # 自定義的 IP 檢查函數
 def is_allowed_ip(ip_address):
