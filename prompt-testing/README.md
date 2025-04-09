@@ -13,5 +13,7 @@ Welcome to the Advertisement Detection Prompt Testing project! Follow the steps 
 2. **Configure API Keys**
     Open the `oracle.py` file and fill in Gemini's API keys.
 
-3. **Update Password Hash**
-    Open the `app.py` file and navigate to line 100. This line contains the SHA-256 hash of the password, which is currently set to `test`. One may want to choose a better password.
+3. **Update IP Range and Password Hash**
+    Open the `app.py` file.
+    - Line 27 contains the allowed IP range.
+    - Line 100 contains the SHA-256 hash of the password, which is currently set to `test`.

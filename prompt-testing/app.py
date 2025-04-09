@@ -28,8 +28,8 @@ ALLOWED_IP_PREFIX = "140.112."
 
 # 自定義的 IP 檢查函數
 def is_allowed_ip(ip_address):
-    return True
-    # return ip_address.startswith(ALLOWED_IP_PREFIX)
+    # return True
+    return ip_address.startswith(ALLOWED_IP_PREFIX)
 
 # 限制訪問的路由
 @app.before_request
